@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TooltipProvider>
         {children}
         <Toaster richColors closeButton position="top-right" />

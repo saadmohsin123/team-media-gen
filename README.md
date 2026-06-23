@@ -1,16 +1,34 @@
-# nextjs-starter
+# team-media-gen
 
-A Next.js 16 starter with **shadcn/ui** pre-installed, layout templates, and example pages.
+Internal team app for **automated product media generation**. Users pick a model (Replicate or ImagineArt), upload product reference images, configure shot options, and generate new visuals from those references.
+
+## Current phase: frontend prototype
+
+The studio UI is fully interactive, but generation is **mocked in the browser** for now. This lets the team review workflow, layout, and options before we wire up Replicate and ImagineArt on the backend.
+
+### What works today
+
+- Step-based studio flow (model → references → options)
+- Model picker for Replicate and ImagineArt
+- Drag-and-drop reference upload
+- Style presets, resolution, output count, prompts
+- Mock preview generation with progress states
+- Side-by-side reference vs output comparison
+- Session history (in-browser only)
+
+### Backend (next phase)
+
+- `POST /api/generate` route scaffold exists but is not used by the UI yet
+- Add `REPLICATE_API_TOKEN` and `IMAGINEART_API_KEY` when ready
 
 ## Stack
 
-- **Next.js 16** (App Router, TypeScript, Turbopack)
-- **Tailwind CSS v4**
-- **shadcn/ui** (Base Nova style, 45+ components)
-- **next-themes** (light/dark mode)
-- **Sonner** (toast notifications)
+- Next.js 16 (App Router, TypeScript)
+- shadcn/ui + Tailwind CSS v4
+- Replicate API (planned)
+- ImagineArt API (planned)
 
-## Getting started
+## Setup
 
 ```bash
 npm install
@@ -19,66 +37,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## What's included
-
-### Pages
-
-| Route | Description |
-|-------|-------------|
-| `/` | Landing page with hero, stats, features, and CTA sections |
-| `/components` | Live gallery of UI components and form templates |
-| `/dashboard` | Sidebar dashboard layout with metrics and table |
-
-### Layout (`src/components/layout/`)
-
-- `header.tsx` — Site header with nav and theme toggle
-- `footer.tsx` — Site footer
-- `site-shell.tsx` — Header + main + footer wrapper
-- `theme-toggle.tsx` — Light/dark mode switch
-
-### Page templates (`src/components/templates/`)
-
-- `hero-section.tsx`
-- `stats-section.tsx`
-- `feature-cards.tsx`
-- `cta-section.tsx`
-- `contact-form.tsx`
-- `component-gallery.tsx`
-- `dashboard-shell.tsx`
-
-### UI primitives (`src/components/ui/`)
-
-All shadcn/ui components are pre-installed: accordion, alert, avatar, badge, breadcrumb, button, calendar, card, carousel, chart, checkbox, command, dialog, drawer, dropdown-menu, form inputs, navigation, pagination, popover, progress, select, separator, sheet, sidebar, skeleton, slider, sonner, switch, table, tabs, textarea, toggle, tooltip, and more.
-
-## Add more components
-
-```bash
-npx shadcn@latest add [component-name]
-```
-
-Browse available components at [ui.shadcn.com](https://ui.shadcn.com).
-
 ## Project structure
 
 ```
 src/
-├── app/
-│   ├── components/page.tsx   # Component gallery
-│   ├── dashboard/page.tsx    # Dashboard template
-│   ├── layout.tsx
-│   └── page.tsx              # Home
-├── components/
-│   ├── layout/               # App chrome
-│   ├── providers/            # Theme, tooltip, toast
-│   ├── templates/            # Reusable page sections
-│   └── ui/                   # shadcn/ui primitives
-├── hooks/
-└── lib/
+├── app/page.tsx                 # Generation studio
+├── components/studio/           # UI flow, upload, options, results
+├── lib/
+│   ├── mock-generation.ts       # Frontend-only preview engine
+│   ├── models.ts                # Model registry & presets
+│   ├── replicate.ts             # Backend (not wired yet)
+│   └── imagineart.ts            # Backend (not wired yet)
+└── types/generation.ts
 ```
-
-## Scripts
-
-- `npm run dev` — Start dev server
-- `npm run build` — Production build
-- `npm run start` — Start production server
-- `npm run lint` — Run ESLint

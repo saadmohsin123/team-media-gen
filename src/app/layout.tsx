@@ -16,8 +16,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "nextjs-starter",
-  description: "Next.js starter with shadcn/ui templates and pre-loaded components",
+  title: "team-media-gen",
+  description: "Team app for reference-based product image generation with Replicate and ImagineArt",
 };
 
 export default function RootLayout({
@@ -29,9 +29,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-svh font-sans">
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
